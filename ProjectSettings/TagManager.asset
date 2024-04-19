@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - RedFinger
+  - YellowFinger
+  - GreenFinger
+  - BlueFinger
+  - FingerColor
   layers:
   - Default
   - TransparentFX
