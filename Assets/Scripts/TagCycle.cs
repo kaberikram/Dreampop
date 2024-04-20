@@ -6,7 +6,6 @@ public class TagCycle : MonoBehaviour
     private AudioSource audioSource; // Reference to the AudioSource component
     private Renderer rend; // Reference to the Renderer component
     private Material material; // Reference to the material
-    private bool isFPressed = false; // Flag to track if F is pressed
     private int sequenceIndex = 0; // Index to keep track of the sequence
 
     // Array to store the sequences of material properties

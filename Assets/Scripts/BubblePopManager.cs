@@ -9,6 +9,8 @@ public class BubblePopManager : BubblePopManagerBase
     private AudioSource audioSource;
     // Reference to the ScoreManager instance
     private ScoreManager scoreManager;
+    // Reference to the GameManager instance
+    private GameManager gameManager;
 
     protected override void Start()
     {
@@ -17,12 +19,15 @@ public class BubblePopManager : BubblePopManagerBase
 
         // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
+
+        // Find the GameManager instance in the scene
+        gameManager = FindObjectOfType<GameManager>();
     }
 
-    protected override void OnCollisionEnter(Collision other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        // Check if the collider hasn't been disabled yet
-        if (!colliderDisabled)
+        // Check if the collider hasn't been disabled yet and the game state is playing
+        if (!colliderDisabled && gameManager != null && gameManager.CurrentState == GameState.GamePlaying)
         {
             switch (sphereColor)
             {

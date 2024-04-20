@@ -17,7 +17,7 @@ public class BubblePopManagerBase : MonoBehaviour
         _renderer = GetComponent<Renderer>();
     }
 
-    protected virtual void OnCollisionEnter(Collision other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         // Handle collision logic in derived classes
     }
