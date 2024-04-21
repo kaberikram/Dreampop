@@ -15,11 +15,12 @@ public class GameManager : MonoBehaviour
     {
         // Find the ScoreManager instance in the scene
         scoreManager = FindObjectOfType<ScoreManager>();
+        StartGame();
+
     }
 
     private void Update()
     {
-        StartGame();
 
 
         switch (currentState)

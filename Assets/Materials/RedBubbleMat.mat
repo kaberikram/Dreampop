@@ -84,6 +84,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _AlphaValue: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -95,12 +96,12 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DisplacementStrenght: 0.1
-    - _DissolveProperty: 0.076
+    - _DissolveProperty: 0
     - _DissolveThicknessEdge: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FresnelPower: 5
+    - _FresnelPower: 1.68
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0

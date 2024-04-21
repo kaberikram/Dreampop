@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a68e8d36d02401cb1464703331c29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1104480315}
+  targetObjects: []
   triggerObject: {fileID: 1545744963}
   triggerSound: {fileID: 8300000, guid: 1fd41b9f3f8624a68a7aaa1ab2119ccf, type: 3}
   lerpSpeed: 5
@@ -459,7 +459,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1626,6 +1626,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975742600718434271, guid: f5b533ea9470342619ae232431be88b5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7146751214466529632, guid: f5b533ea9470342619ae232431be88b5,
         type: 3}

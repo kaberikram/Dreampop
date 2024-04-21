@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class FingerMaterialController : MonoBehaviour
 {
-    public GameObject targetObject; // Reference to the object whose tag and material properties will be changed
+    public GameObject[] targetObjects; // Array of objects whose tag and material properties will be changed
     public GameObject triggerObject; // Reference to the object whose trigger will activate the changes
     public AudioClip triggerSound; // Sound to play when the trigger activates
 
     private AudioSource audioSource; // Reference to the AudioSource component
-    private Renderer rend; // Reference to the Renderer component of the target object
-    private Material material; // Reference to the material of the target object
+    private Renderer[] rends; // Array of Renderers of the target objects
+    private Material[] materials; // Array of materials of the target objects
     private bool isTriggered = false; // Flag to track if trigger is activated
     private int sequenceIndex = 0; // Index to keep track of the sequence
 
@@ -25,19 +25,26 @@ public class FingerMaterialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get the Renderer component attached to the target object
-        rend = targetObject.GetComponent<Renderer>();
+        // Initialize arrays
+        rends = new Renderer[targetObjects.Length];
+        materials = new Material[targetObjects.Length];
 
-        // Ensure Renderer component is not null
-        if (rend == null)
+        // Get the Renderer components attached to the target objects
+        for (int i = 0; i < targetObjects.Length; i++)
         {
-            Debug.LogError("Renderer component is not found on the target object!");
-            enabled = false; // Disable the script
-            return;
-        }
+            rends[i] = targetObjects[i].GetComponent<Renderer>();
 
-        // Get the material of the Renderer component
-        material = rend.material;
+            // Ensure Renderer component is not null
+            if (rends[i] == null)
+            {
+                Debug.LogError("Renderer component is not found on target object " + i + "!");
+                enabled = false; // Disable the script
+                return;
+            }
+
+            // Get the material of the Renderer component
+            materials[i] = rends[i].material;
+        }
 
         // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
@@ -65,24 +72,31 @@ public class FingerMaterialController : MonoBehaviour
 
             // Increment the tag index
             tagIndex = (tagIndex + 1) % tags.Length;
-            // Change the tag of the target object to the new tag
-            targetObject.tag = tags[tagIndex];
-            Debug.Log("Tag changed to: " + tags[tagIndex]);
+
+            // Change the tag of all target objects to the new tag
+            for (int i = 0; i < targetObjects.Length; i++)
+            {
+                targetObjects[i].tag = tags[tagIndex];
+                Debug.Log("Tag changed to: " + tags[tagIndex] + " for target object " + i);
+            }
 
             // Reset trigger flag
             isTriggered = false;
         }
 
-        // Smoothly interpolate between the current and target values
+        // Smoothly interpolate between the current and target values for each target object
         Vector3 targetValues = sequences[sequenceIndex];
-        float rbValue = Mathf.Lerp(material.GetFloat("_RB"), targetValues.x, Time.deltaTime * lerpSpeed);
-        float grbValue = Mathf.Lerp(material.GetFloat("_GRB"), targetValues.y, Time.deltaTime * lerpSpeed);
-        float grbyValue = Mathf.Lerp(material.GetFloat("_GRBY"), targetValues.z, Time.deltaTime * lerpSpeed);
+        for (int i = 0; i < targetObjects.Length; i++)
+        {
+            float rbValue = Mathf.Lerp(materials[i].GetFloat("_RB"), targetValues.x, Time.deltaTime * lerpSpeed);
+            float grbValue = Mathf.Lerp(materials[i].GetFloat("_GRB"), targetValues.y, Time.deltaTime * lerpSpeed);
+            float grbyValue = Mathf.Lerp(materials[i].GetFloat("_GRBY"), targetValues.z, Time.deltaTime * lerpSpeed);
 
-        // Set the material properties
-        material.SetFloat("_RB", rbValue);
-        material.SetFloat("_GRB", grbValue);
-        material.SetFloat("_GRBY", grbyValue);
+            // Set the material properties for each target object
+            materials[i].SetFloat("_RB", rbValue);
+            materials[i].SetFloat("_GRB", grbValue);
+            materials[i].SetFloat("_GRBY", grbyValue);
+        }
     }
 
     // OnTriggerStay is called once per frame for every Collider other that is touching the trigger
