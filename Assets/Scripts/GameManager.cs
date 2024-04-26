@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
                 // Handle other game states if needed...
         }
 
-        // Check for the "S" key press to start the game
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StartGame();
-        }
+        // // Check for the "S" key press to start the game
+        // if (Input.GetKeyDown(KeyCode.S))
+        // {
+        //     StartGame();
+        // }
     }
 
     private void StartGame()
