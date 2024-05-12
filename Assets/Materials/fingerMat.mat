@@ -84,7 +84,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _AlphaValue: 4.61
+    - _AlphaValue: 0.8
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
@@ -107,7 +107,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Power: 1.86
+    - _Power: 2.78
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RB: 0

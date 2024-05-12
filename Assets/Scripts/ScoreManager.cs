@@ -5,6 +5,8 @@ public class ScoreManager : MonoBehaviour
 {
     public int score = 0;
     public TMP_Text scoreText; // Use TMP_Text instead of Text
+    public TMP_Text FinalScoreText; // Use TMP_Text instead of Text
+
 
     private GameManager gameManager;
 
@@ -12,6 +14,8 @@ public class ScoreManager : MonoBehaviour
     {
         // Find and assign the TextMeshPro Text object in the scene
         scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+        FinalScoreText = GameObject.Find("FinalScoreText").GetComponent<TMP_Text>();
+
         // Find the GameManager instance in the scene
         gameManager = FindObjectOfType<GameManager>();
         // Update the text with the initial score value
@@ -41,6 +45,7 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = score.ToString("00");
+            FinalScoreText.text = score.ToString("00");
         }
     }
 

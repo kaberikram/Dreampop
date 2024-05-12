@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
-public enum GameState { GameStart, GamePlaying, GameEnd }
+public enum GameState { GameStart, GamePlaying, GameEnd, GameRestart }
 
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
                 break;
                 // Handle other game states if needed...
         }
-        
+
         UpdateUITimer();
 
     }
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        
+
         // Map timer value between 0 and 120 to fill amount between 1 and 0
         float fillAmount = 1f - (timer / gameDuration);
         // Set fill amount to UI Image
@@ -70,6 +71,19 @@ public class GameManager : MonoBehaviour
         // Store remaining time if game ends prematurely
         remainingTime = gameDuration - timer;
         Debug.Log("Game Over!");
+        StartCoroutine(RestartGameWithDelay(1.5f)); // Change the delay time as needed
+    }
+
+    private IEnumerator RestartGameWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        RestartGame();
+    }
+
+    public void RestartGame()
+    {
+        // Transition to GameRestart state
+        currentState = GameState.GameRestart;
     }
 
     // Getter for the current game state
