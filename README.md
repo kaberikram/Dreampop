@@ -1,5 +1,5 @@
 # Dreampop
- Mixed Reality casual game inspired by popping bubble wrap, bubble shooter games and push pop fidget toys!
+ Mixed Reality casual game inspired by popping bubble wraps, bubble shooter games and push pop fidget toys!
  
 ## Unity Version 2022.3.23f1
 
