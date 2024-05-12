@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private float remainingTime = 0f; // Store remaining time when game ends prematurely
     public Image timerImage;
 
+    private AudioSource audioSource;
+
     private GameState currentState = GameState.GameStart;
 
     // Reference to the ScoreManager instance
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         // Find the ScoreManager instance in the scene
         scoreManager = FindObjectOfType<ScoreManager>();
 
@@ -66,6 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        PlayEndSound();
         // Transition to GameEnd state
         currentState = GameState.GameEnd;
         // Store remaining time if game ends prematurely
@@ -99,6 +103,14 @@ public class GameManager : MonoBehaviour
             // Restart the timer with remaining time
             timer = gameDuration - remainingTime;
             Debug.Log("Game Resumed!");
+        }
+    }
+
+    private void PlayEndSound()
+    {
+        if (audioSource != null && audioSource.clip != null)
+        {
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 }

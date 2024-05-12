@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
             score += amount;
             Debug.Log("Score: " + score);
             UpdateScoreText();
-            if (score > 29)
+            if (score > 50)
             {
                 gameManager.EndGame();
             }
