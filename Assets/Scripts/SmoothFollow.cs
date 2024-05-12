@@ -14,18 +14,25 @@ public class SmoothFollow : MonoBehaviour
         offset = transform.position - cameraTransform.position;
     }
 
-    void FixedUpdate()
-    {
-        // Calculate the desired position based on camera's forward direction
-        Vector3 desiredPosition = cameraTransform.position + cameraTransform.forward * distanceZ;
+void FixedUpdate()
+{
+    // Calculate the desired position based on camera's forward direction
+    Vector3 desiredPosition = cameraTransform.position + cameraTransform.forward * distanceZ;
 
-        // Smoothly interpolate towards the desired position
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+    // Smoothly interpolate towards the desired position
+    Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
-        // Update the position
-        transform.position = smoothedPosition;
+    // Update the position
+    transform.position = smoothedPosition;
 
-        // Update rotation to match camera's rotation
-        transform.rotation = Quaternion.LookRotation(cameraTransform.forward, cameraTransform.up);
-    }
+    // Calculate the desired rotation based on camera's rotation
+    Quaternion desiredRotation = Quaternion.LookRotation(cameraTransform.forward, cameraTransform.up);
+
+    // Keep the z rotation fixed
+    desiredRotation.eulerAngles = new Vector3(desiredRotation.eulerAngles.x, desiredRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+    // Update rotation to match desired rotation
+    transform.rotation = desiredRotation;
+}
+
 }

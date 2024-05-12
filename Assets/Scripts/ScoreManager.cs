@@ -1,49 +1,47 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro; // Import TextMeshPro namespace
 
 public class ScoreManager : MonoBehaviour
 {
-    public int score = 0; // Non-static field
-    public Text scoreText; // Reference to the UI Text object
+    public int score = 0;
+    public TMP_Text scoreText; // Use TMP_Text instead of Text
 
-    // Reference to the GameManager instance
     private GameManager gameManager;
 
     private void Start()
     {
-        // Find and assign the Text object in the scene
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        // Find and assign the TextMeshPro Text object in the scene
+        scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
         // Find the GameManager instance in the scene
         gameManager = FindObjectOfType<GameManager>();
         // Update the text with the initial score value
         UpdateScoreText();
     }
 
-    public void IncreaseScore(int amount) // Non-static method
+    public void IncreaseScore(int amount)
     {
-        // Check if the game is in the playing state
         if (gameManager != null && gameManager.CurrentState == GameState.GamePlaying)
         {
             score += amount;
             Debug.Log("Score: " + score);
-            // Update the UI Text
             UpdateScoreText();
+            if (score > 29)
+            {
+                gameManager.EndGame();
+            }
         }
         else
         {
-            // Optionally, provide feedback or handle score increments when not in the playing state
             Debug.LogWarning("Score can only be increased during the playing state.");
         }
     }
 
-    // Function to update the UI Text with the current score value
     private void UpdateScoreText()
     {
-        // Check if the scoreText is not null
         if (scoreText != null)
         {
-            // Update the text with the current score value
-            scoreText.text = "Score: " + score.ToString();
+            scoreText.text = score.ToString("00");
         }
     }
+
 }

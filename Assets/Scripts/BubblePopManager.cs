@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class BubblePopManager : BubblePopManagerBase
 {
+    [SerializeField] private int ScoreAmount = 1;
     // Flag to track if the collider has been disabled
     private bool colliderDisabled = false;
 
@@ -43,7 +45,7 @@ public class BubblePopManager : BubblePopManagerBase
                         // Increase score
                         if (scoreManager != null)
                         {
-                            scoreManager.IncreaseScore(10); // Adjust score increment as needed
+                            scoreManager.IncreaseScore(ScoreAmount); // Adjust score increment as needed
                         }
                         else
                         {
@@ -63,7 +65,7 @@ public class BubblePopManager : BubblePopManagerBase
                         // Increase score
                         if (scoreManager != null)
                         {
-                            scoreManager.IncreaseScore(10); // Adjust score increment as needed
+                            scoreManager.IncreaseScore(ScoreAmount); // Adjust score increment as needed
                         }
                         else
                         {
@@ -83,7 +85,7 @@ public class BubblePopManager : BubblePopManagerBase
                         // Increase score
                         if (scoreManager != null)
                         {
-                            scoreManager.IncreaseScore(10); // Adjust score increment as needed
+                            scoreManager.IncreaseScore(ScoreAmount); // Adjust score increment as needed
                         }
                         else
                         {
@@ -103,7 +105,7 @@ public class BubblePopManager : BubblePopManagerBase
                         // Increase score
                         if (scoreManager != null)
                         {
-                            scoreManager.IncreaseScore(10); // Adjust score increment as needed
+                            scoreManager.IncreaseScore(ScoreAmount); // Adjust score increment as needed
                         }
                         else
                         {
