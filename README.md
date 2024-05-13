@@ -1,5 +1,6 @@
 # Dreampop
  Mixed Reality casual game inspired by popping bubble wraps, bubble shooter games and push pop fidget toys!
+ For the Meta Quest Presence Platform Hackathon 2024 casual gaming submission.
  
 ## Unity Version 2022.3.23f1
 
